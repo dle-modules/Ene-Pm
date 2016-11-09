@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Установка модуля Ene Pm</title>
+	<style>
+	html, body { font: 13px/18px Arial, Helvetica, sans-serif; color: #333; background: #F1F1F1; margin: 0; padding: 0 }
+	.wrapper {
+		width: 90%;
+		overflow: hidden;
+		margin: 5% auto 0;  
+		-webkit-box-shadow: rgba( 0, 0, 0, 0.3 ) 0 1px 3px; 
+		-moz-box-shadow: rgba( 0, 0, 0, 0.3 ) 0 1px 3px; 
+		box-shadow: rgba( 0, 0, 0, 0.3 ) 0 1px 3px; 
+		border-color: #E5E5E5 #DBDBDB #D2D2D2; 
+		border-radius: 4px; 
+		background: #FFF; 
+		padding: 30px;
+		position: relative;
+	}
+	.wrapper .cms {
+		position: absolute;
+		top: 25px;
+		font-size: 18px;
+		right: 25px;
+		padding: 5px 10px;
+		color: #787878;
+		background-color: #ebebeb;
+		border-radius: 3px;
+	}
+	.wrapper .cms b {
+		color: #328ECD;
+	}
+	.wrapper .date {
+		position: absolute;
+		top: 25px;
+		font-size: 13px;
+		left: 25px;
+		padding: 5px 10px;
+		font-style: italic;
+		color: #787878;
+		background-color: #ebebeb;
+		border-radius: 3px;
+	}
+	.wrapper .date span {
+		color: #328ECD;
+	}
+	.wrapper .title { font-size: 28pt; font-weight: 700; line-height: 40pt }
+	.wrapper .result { margin-top: 10px }
+	.wrapper .explay { margin-top: 15px }
+	.wrapper .explay a { text-decoration: none; color: #787878 }
+	ol {
+		padding: 0;
+	}
+	ol li {
+		margin: 5px 0;
+	}
+	ol li textarea {
+		width: 100%;
+		background-color: #ebebeb;
+		outline: none;
+		border: 1px solid #ccc;
+		height: auto;
+		padding: 5px;
+	}
+	ol li textarea.min {
+		min-height: 140px;
+	}
+	ol li textarea.big {
+		min-height: 320px;
+	}
+	img {
+	max-width: 750px;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="title" style="text-align:center;"><br>Ene PM</div>
+		<div class="cms">DLE <b>10.2 - 11.x</b></div>
+		<div class="date">от <span>09.11.2016</span></div>
+		<ol>
+			<li>Залить все файлы к себе на сервер с архива, предварительно изменив название папки {THEME} на название своего шаблона</li>
+			<li>Выполнить <b>install.php</b></li>
+			<li>В <b>main.tpl</b> перед тегом:<textarea></head></textarea>Вставить:<textarea class="min">[desktop]
+	[not-group=5]
+		<link media="screen" href="{THEME}/ene_pm/front_end/style.css" type="text/css" rel="stylesheet" />
+		<link href="{THEME}/ene_pm/front_end/jquery.jscrollpane.css" type="text/css" rel="stylesheet">
+	[/not-group]
+[/desktop]</textarea>Далее перед тегом:<textarea></body></textarea>Вставить:<textarea class="big">[desktop]
+	[not-group=5]
+		{include file="engine/modules/ene_pm/ene_pm.php"}
+		<script type="text/javascript" src="{THEME}/ene_pm/front_end/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" src="{THEME}/ene_pm/front_end/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="{THEME}/ene_pm/front_end/ene_pm.js"></script>
+		<script type="text/javascript" src="{THEME}/ene_pm/front_end/jquery.notify.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="{THEME}/ene_pm/front_end/ui.notify.css" />
+		{include file="engine/modules/ene_pm/ajax/notify.php"}
+	[/not-group]
+[/desktop]</textarea>
+			</li>
+			
+		</ol>
+		<div class="result"><b>Автор:</b> <a href="http://gameer.name/store/28">Gameer</a>.</div>
+	</div>
+</body>
+</html>

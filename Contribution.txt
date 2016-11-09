@@ -1,0 +1,6 @@
+1. jScrollPane - Copyright (c) 2014 Kelvin Luck (link: http://jscrollpane.kelvinluck.com/)
+2. jQuery Mousewheel - Copyright 2014 jQuery Foundation and other contributors (link: http://jquery.org/)
+3. jQuery Notify UI Widget - by Eric Hynds (link: http://www.erichynds.com/jquery/a-jquery-ui-growl-ubuntu-notification-widget/)
+4. PM Notifier - Copyright (c) 2015 MSW (link: https://0-web.ru/dle/free-mod-dle/420-pm-notifier-v22.html) in module has name notify.php
+5. Design - Copyright (c) 2015 VK.COM (link: https://vk.com/)
+6. Blogger Sans Font - Copyright (c) 2014 FirstSiteGuide team (link: http://firstsiteguide.com/)
