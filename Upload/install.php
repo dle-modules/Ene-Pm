@@ -46,13 +46,14 @@ if ( !$isUTF )
   $status = 'installed';
   
   $dataBase[] = "CREATE TABLE IF NOT EXISTS `{PREFIX}_ene_pm` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `from_user_id` int(10) NOT NULL,
   `text` text NOT NULL,
   `date` datetime NOT NULL DEFAULT '2000-01-01 00:00:00',
   `read_mess` tinyint(1) NOT NULL,
-  `readpoup` tinyint(1) NOT NULL
+  `readpoup` tinyint(1) NOT NULL,
+   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Ene PM by Gameer';";
 
 if ( is_array( $dataBase ) and count( $dataBase ) > 0 )
