@@ -1,5 +1,5 @@
 ![version](https://img.shields.io/badge/version-1.0-red.svg?style=flat-square "Version")
-![DLE](https://img.shields.io/badge/DLE-10.2_--_11.x-green.svg?style=flat-square "DLE Version")
+![DLE](https://img.shields.io/badge/DLE-10.2_--_11.x_(UTF--8)-green.svg?style=flat-square "DLE Version")
 [![MIT License](https://img.shields.io/badge/license-CC_BY--NC--SA_3.0-blue.svg?style=flat-square)](https://github.com/Gameerr/Ene-Pm/blob/master/LICENSE)
 
 # Ene Pm для DataLife Engine 10.2 - 11.x
