@@ -310,6 +310,8 @@ div.fc_clist_filter {
 	border: 0;
 	padding: 0px 7px 0px;
 	font-size: 12px;
+	height: auto;
+    line-height: 16px;
 }
 
 /* Окно чата */
@@ -522,7 +524,7 @@ div[class*=scroller_] {outline:none;height:100%;}
 	position: absolute;
     float: right;
     z-index: 999999999999;
-    right: 15px;
+    right: 0px;
     background: url(../front_end/smile_icon.png) no-repeat 4px 4px;
 }
 .emoji_tt_wrap {

@@ -2,7 +2,7 @@
 ![DLE](https://img.shields.io/badge/DLE-10.2_--_11.x_(UTF--8)-green.svg?style=flat-square "DLE Version")
 [![CC BY-NC-SA License](https://img.shields.io/badge/license-CC_BY--NC--SA_3.0-blue.svg?style=flat-square)](https://github.com/Gameerr/Ene-Pm/blob/master/LICENSE)
 
-# Ene Pm для DataLife Engine 10.2 - 11.x
+# Ene Pm 2 для DataLife Engine 10.2 - 11.x
 
 # Краткое описание:
 У вас на сайте пользователи общаются и ведут активную жизнь на нем ? Хотите не много им в этом помочь ? Тогда представляю вашему вниманию новый модуль для переписок!
@@ -25,6 +25,11 @@
 - Обновление блока каждые 5 секунд.
 - Перетаскивание блоков по странице.
 - Вывод сколько не прочитано сообщений от пользователя что вам написал.
+
+# Версия 2:
+- Устранены ошибки.
+- Добавлена админ панель.
+- Добавлены настройки.
 
 # Лицензия:
 Данное программное обеспечение издается по лицензии CC Attribution — Noncommercial — Share Alike.<br/>

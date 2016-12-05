@@ -11,6 +11,8 @@ Copyright (c) 2016 Gameer
 =====================================================
 Данный код защищен авторскими правами и использует лицензию CC Attribution — Noncommercial — Share Alike
 */
+
+// [START] Стандартные include, функции, параметры DLE
 @error_reporting ( E_ALL ^ E_WARNING ^ E_NOTICE );
 @ini_set ( 'display_errors', true );
 @ini_set ( 'html_errors', false );
@@ -33,16 +35,22 @@ require_once ROOT_DIR . '/language/' . $config['langs'] . '/website.lng';
 @header( "Content-type: text/html; charset=" . $config['charset'] );
 
 define( 'TEMPLATE_DIR', ROOT_DIR . '/templates/' . $config['skin'] );
+// [END] Стандартные include, функции, параметры DLE
 
-if(!$is_logged) $member_id['user_group'] = 5;
+if(!$is_logged) return;
+$user_from_id = isset($_GET["user_id"]) && is_numeric($_GET["user_id"]) ? intval($_GET["user_id"]) : false;
+if(!$user_from_id) return;
+
+if(file_exists(ENGINE_DIR . "/data/ene_pm.php"))
+	include ENGINE_DIR . "/data/ene_pm.php";
+
 $tpl = new dle_template();
 $tpl->dir = TEMPLATE_DIR;
 $tpl->load_template( 'ene_pm/chat_block.tpl' );
-$user_from_id = isset($_GET["user_id"]) && is_numeric($_GET["user_id"]) ? intval($_GET["user_id"]) : false;
-if(!$user_from_id) return;
-$count_mess = $db->super_query("SELECT COUNT(*) as count FROM " . PREFIX . "_ene_pm WHERE (user_id='{$user_from_id}' AND from_user_id='{$member_id[user_id]}') OR ( user_id='{$member_id[user_id]}' AND from_user_id='{$user_from_id}')");
+
+$count_mess = $db->super_query("SELECT COUNT(*) as count FROM " . PREFIX . "_ene_pm WHERE (user_id='{$user_from_id}' AND from_user_id='{$member_id[user_id]}') OR ( user_id='{$member_id[user_id]}' AND from_user_id='{$user_from_id}')"); // подсчет сообщений
 $tpl->set( '{allpm}', $count_mess["count"] );
-if($count_mess["count"] <= 15)
+if($count_mess["count"] <= 15) // вывод последние 15 сообщений
 {
 	$count_messages = "0, 15";
 }
@@ -52,6 +60,7 @@ else
 	$count_messages = "{$from_mess}, 15";
 }
 $db->free($count_mess);
+
 $sql = $db->query("SELECT e.from_user_id, e.text, e.date, e.user_id as my_id, e.read_mess, u.name, u.fullname, u.foto, u.lastdate FROM " . PREFIX . "_ene_pm as e, " . PREFIX . "_users as u  WHERE ( e.user_id=u.user_id AND e.user_id='{$user_from_id}' AND e.from_user_id='{$member_id[user_id]}') OR ( e.from_user_id=u.user_id AND e.user_id='{$member_id[user_id]}' AND e.from_user_id='{$user_from_id}') ORDER BY `date` ASC LIMIT {$count_messages}");
 $num_rows = $sql->num_rows;
 $tpl->set_block( "'\\[block\\](.*?)\\[/block\\]'si", "\\1" );
@@ -184,7 +193,7 @@ if($num_rows > 0)
 		$tpl->set_block( "'\\[not_fullname\\](.*?)\\[/not_fullname\\]'si", "\\1" );	
 	}
 }
-else
+else // если сообщений не было, выводим просто данные о пользователе
 {
 	$row = $db->super_query("SELECT * FROM " . PREFIX . "_users WHERE user_id='{$user_from_id}'");
 	$tpl->set( '{nick}', $row["name"] );

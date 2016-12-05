@@ -45,16 +45,6 @@ if ( !$isUTF )
   $dataBase = $configuration = array( );
   $status = 'installed';
   $dataBase[] = "INSERT INTO `{PREFIX}_admin_sections` (`name`, `title`, `descr`, `icon`, `allow_groups`) VALUES ('ene_pm', 'Ene Pm v2', 'Управление переписками', 'ene_pm_mess.png', '1')";
-  $dataBase[] = "CREATE TABLE IF NOT EXISTS `{PREFIX}_ene_pm` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL,
-  `from_user_id` int(10) NOT NULL,
-  `text` text NOT NULL,
-  `date` datetime NOT NULL DEFAULT '2000-01-01 00:00:00',
-  `read_mess` tinyint(1) NOT NULL,
-  `readpoup` tinyint(1) NOT NULL,
-   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Ene PM by Gameer';";
 
 if ( is_array( $dataBase ) and count( $dataBase ) > 0 )
 {

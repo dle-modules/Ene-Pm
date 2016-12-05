@@ -11,6 +11,8 @@ Copyright (c) 2016 Gameer
 =====================================================
 Данный код защищен авторскими правами и использует лицензию CC Attribution — Noncommercial — Share Alike
 */
+
+// [START] Стандартные include, функции, параметры DLE
 @error_reporting ( E_ALL ^ E_WARNING ^ E_NOTICE );
 @ini_set ( 'display_errors', true );
 @ini_set ( 'html_errors', false );
@@ -33,8 +35,9 @@ require_once ROOT_DIR . '/language/' . $config['langs'] . '/website.lng';
 @header( "Content-type: text/html; charset=" . $config['charset'] );
 
 define( 'TEMPLATE_DIR', ROOT_DIR . '/templates/' . $config['skin'] );
+// [END] Стандартные include, функции, параметры DLE
 
-if(!$is_logged) $member_id['user_group'] = 5;
+if(!$is_logged) return;
 
 include_once ENGINE_DIR . '/classes/parse.class.php';
 $parse = new ParseFilter();
@@ -42,21 +45,23 @@ $parse->safe_mode = true;
 $parse->allow_url = 1;
 $parse->allow_image = 1;
 
-$user_from_id = isset($_POST["user_id"]) && is_numeric($_POST["user_id"]) ? intval($_POST["user_id"]) : false;
-$text_msg = isset($_POST["text_msg"]) ? $_POST["text_msg"] : false;
-$date_last = isset($_POST["date_last"]) && is_string($_POST["date_last"]) ? trim(strip_tags(stripslashes($_POST["date_last"]))) : false;
+$user_from_id = isset($_POST["user_id"]) && is_numeric($_POST["user_id"]) ? intval($_POST["user_id"]) : false; // От кого идет сообщение
+$text_msg = isset($_POST["text_msg"]) ? $_POST["text_msg"] : false; // Сообщение
+$date_last = isset($_POST["date_last"]) && is_string($_POST["date_last"]) ? trim(strip_tags(stripslashes($_POST["date_last"]))) : false; // дата последнего сообщения
 if(!$user_from_id || !$text_msg || !$date_last) return;
+
+$text_msg = convert_unicode( $text_msg, $config['charset'] );
+$parse->allowbbcodes = false;
+$text_msg = $db->safesql( $parse->process( trim( $text_msg ) ) );
+// check to empty message
+$text_msg_null = trim(strip_tags(htmlspecialchars_decode($text_msg), "<img>"));
+if($text_msg_null == "") return;
 
 $tpl_message = new dle_template();
 $tpl_message->dir = TEMPLATE_DIR;
 $tpl_message->load_template( 'ene_pm/chat_message.tpl' );
 
-$text_msg = convert_unicode( $text_msg, $config['charset'] );
-
-$parse->allowbbcodes = false;
-$text_msg = $db->safesql( $parse->BB_Parse( $parse->process( trim( $text_msg ) ), false ) );
-
-if(date("Y.m.d", time()) != date("Y.m.d", $date_last))
+if(date("Y.m.d", time()) != date("Y.m.d", $date_last)) // если дата не сегодняшняя делаем вывод новой даты в сообщениях
 {
 	$tpl_message->set_block( "'\\[date\\](.*?)\\[/date\\]'si", "\\1" );
 	$tpl_message->set( '{date}', date("d-m-Y", time()) );
@@ -65,8 +70,10 @@ else
 {
 	$tpl_message->set_block( "'\\[date\\](.*?)\\[/date\\]'si", "" );
 }
-$tpl_message->set_block( "'\\[not-read\\](.*?)\\[/not-read\\]'si", "\\1" );
+
+$tpl_message->set_block( "'\\[not-read\\](.*?)\\[/not-read\\]'si", "\\1" ); // сообщение еще не прочитано
 $tpl_message->set_block( "'\\[read\\](.*?)\\[/read\\]'si", "" );
+
 if($user_from_id != $member_id["user_id"])
 {
 	$tpl_message->set_block( "'\\[me\\](.*?)\\[/me\\]'si", "\\1" );
@@ -77,6 +84,7 @@ else
 	$tpl_message->set_block( "'\\[me\\](.*?)\\[/me\\]'si", "" );
 	$tpl_message->set_block( "'\\[not-me\\](.*?)\\[/not-me\\]'si", "\\1" );
 }
+
 $tpl_message->set( '{user_id}', intval($user_from_id) );
 $tpl_message->set( '{my_id}', intval($member_id["my_id"]) );
 $tpl_message->set( '{nick}', $member_id["name"] );
@@ -118,7 +126,11 @@ if($member_id["foto"])
 				$tpl_message->set( '{foto}', $config['http_home_url'] . "uploads/fotos/" . $member_id["foto"] );
 		} 
 		else
+		{
 			if( $member_id["foto"] and (file_exists( ROOT_DIR . "/uploads/fotos/" . $member_id["foto"] )) ) $tpl_message->set( '{foto}', $config['http_home_url'] . "uploads/fotos/" . $member_id["foto"] );
+			else
+				$tpl_message->set( '{foto}', "{THEME}/dleimages/noavatar.png" );
+		}
 	}
 }
 else

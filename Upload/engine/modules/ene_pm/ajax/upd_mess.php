@@ -34,11 +34,14 @@ require_once ROOT_DIR . '/language/' . $config['langs'] . '/website.lng';
 
 define( 'TEMPLATE_DIR', ROOT_DIR . '/templates/' . $config['skin'] );
 
-if(!$is_logged) $member_id['user_group'] = 5;
+if(!$is_logged) return;
+
+if(file_exists(ENGINE_DIR . "/data/ene_pm.php"))
+	include ENGINE_DIR . "/data/ene_pm.php";
 
 $user_from_id = isset($_POST["user_id"]) && is_numeric($_POST["user_id"]) ? intval($_POST["user_id"]) : false;
 $ajax_upd = isset($_POST["ajax_upd"]) && is_numeric($_POST["ajax_upd"]) ? intval($_POST["ajax_upd"]) : 15;
-$msfg = isset($_POST["msfg"]) && is_string($_POST["msfg"]) ? trim(strip_tags(stripslashes($_POST["msfg"]))) : "fff";
+$msfg = isset($_POST["msfg"]) && is_numeric($_POST["msfg"]) ? intval($_POST["msfg"]) : 1;
 if(!$user_from_id) return;
 
 $tpl_message = new dle_template();
@@ -52,7 +55,7 @@ if($count_mess["count"] <= 15)
 }
 else
 {
-	if($msfg == "fff")
+	if($msfg == 1)
 	{
 		$from_mess = $count_mess["count"] - 15;
 		$count_message = "{$from_mess}, 15";
@@ -71,7 +74,7 @@ if($num_rows > 0)
 {
 	while ($row = $db->get_row($sql))
 	{	
-		$row["date"] = date("d-m-Y", strtotime($row["date"])); 
+		$row["date"] = date("d-m-Y", strtotime($row["date"]));
 		if($date_last != $row["date"])
 		{			
 			$tpl_message->set_block( "'\\[date\\](.*?)\\[/date\\]'si", "\\1" );

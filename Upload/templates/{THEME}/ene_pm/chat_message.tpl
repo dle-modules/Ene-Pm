@@ -2,7 +2,7 @@
 [not-me]
 	<div class="fc_msgs_wrap messageeasybox ">
 		<div class="fc_msgs_author">
-			<a class="fc_msgs_img" alt="[fullname]{fullname}[/fullname][not_fullname]{nick}[/not_fullname]" href="" style="background-image: url({foto})"></a>
+			<a class="fc_msgs_img" alt="[fullname]{fullname}[/fullname][not_fullname]{nick}[/not_fullname]" href="/user/{nick}/" style="background-image: url({foto})"></a>
 		</div>
 		<div class="fc_msgs">
 			<div class="fc_msg wrapped">{message}</div>

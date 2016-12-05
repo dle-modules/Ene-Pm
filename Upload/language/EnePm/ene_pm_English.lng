@@ -1,0 +1,71 @@
+<?PHP
+/*
+=====================================================
+Ene PM - Модуль быстрых сообщений для CMS DLE
+-----------------------------------------------------
+Автор : Gameer
+-----------------------------------------------------
+Site : http://gameer.name/
+-----------------------------------------------------
+Copyright (c) 2016 Gameer
+=====================================================
+Данный код защищен авторскими правами и использует лицензию CC Attribution — Noncommercial — Share Alike
+*/
+$ene_pm_lang = [
+	"main_author" => "Gameer",
+	"title" => "Ene PM",
+	"main" => "Main Page",
+	"settings" => "Settings",
+	"ver_txt" => "v",
+	"ver_text" => "Version: ",
+	"on" => "Enabled",
+	"off" => "Disabled",
+	"ver" => "2.0",
+	"count_message" => "Number of messages:",
+	"status" => "Mode:",
+	"size_table" => "Size table:",
+	"menu" => "Menu",
+	"message_title_menu" => "Messages",
+	"message_descr_menu" => "Reading and action on all messages",
+	"settings_title_menu" => "Settings",
+	"settings_descr_menu" => "Settings of module",
+	
+	"settings_status" => "Status module works",
+	"settings_status_descr" => "Enable or disable the module",
+	"settings_online" => "The number of users in the network",
+	"settings_online_descr" => "Show the number of users in the network ? (Turning off this option removes one small request to the database)",
+	"settings_counts" => "Number of users in the last message block",
+	"settings_counts_descr" => "How much to display users in the last message block? (default 6)",
+	"settings_blocks" => "Amount of users in an open block",
+	"settings_blocks_descr" => "How much users to display in the open block (default 6)",
+	"settings_message" => "The number of displayed messages",
+	"settings_message_descr" => "How much to load messages in a block when it is opened (default 15)",
+	"settings_notife" => "Enable or disable the notification message",
+	"settings_notife_descr" => "Enable or disable the notification message popup notification",
+	
+	"all_count_pm" => "Total messages in the database:",
+	"search_from" => "Search the user who sent message:",
+	"search_to" => "Search a user who received the message:",
+	"from_date" => "By date (From):",
+	"to_date" => "By date (To):",
+	"pm_status" => "Status messages:",
+	"status_1" => "Any",
+	"status_2" => "Read",
+	"status_3" => "Unread",
+	"search_text" => "Search",
+	"yes" => "Yes",
+	"no" => "No",
+	"from" => "From",
+	"to" => "To",
+	"text" => "Message",
+	"date" => "Time",
+	"read" => "Is read",
+	"check_all" => "Choose all",
+	"pm_list" => "List of messages",
+	"search_show" => "Search messages",
+	"delete_head" => "Deleting is successful",
+	"delete_body" => "Deleting selected messages is successful",
+	"delete_head_error" => "Error",
+	"delete_body_error" => "An error occurred while deleting selected messages, the messages are not deleted",
+];
+?>

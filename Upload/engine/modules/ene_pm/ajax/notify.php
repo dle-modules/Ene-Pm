@@ -12,8 +12,6 @@ Copyright (c) 2016 Gameer
 =====================================================
 Данный код защищен авторскими правами и использует лицензию CC Attribution — Noncommercial — Share Alike
 */
-if($_POST["check"] == "update")
-{
 @error_reporting ( E_ALL ^ E_WARNING ^ E_NOTICE );
 @ini_set ( 'display_errors', true );
 @ini_set ( 'html_errors', false );
@@ -91,36 +89,5 @@ echo <<<HTML
 	</div>
 </div>
 <audio src="/uploads/new_msg.mp3" autoplay></audio>
-HTML;
-}
-}
-else
-{
-if(!defined('DATALIFEENGINE')) die("Hacking attempt!");
-echo <<<HTML
-<script>
-function check_messagepoup() {
-	var idblocks = [];
-	if($("[data-chatblock]").length)
-	{
-		$( "[data-chatblock]" ).each(function( index ) {
-			idblocks.push($( this ).attr("data-chatblock"));
-		});
-	}
-	else
-	{
-		idblocks.push(0);
-	}
-	var idallblock = idblocks.join(",");
-	$.post(dle_root + "engine/modules/ene_pm/ajax/notify.php", {check:"update", idblock : idallblock},
-		function(data){
-			$('#pm_notifier').html(data);
-		}
-	);
-}
-check_messagepoup();
-setInterval("check_messagepoup()", 5000);
-</script>
-<div id="pm_notifier" style="position: absolute;cursor: pointer;"></div>
 HTML;
 }

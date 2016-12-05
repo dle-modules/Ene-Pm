@@ -18,7 +18,7 @@
 		<div class="chat_cont_sh_bottom"></div>
 		<a class="chat_tab_wrap" id="chat_tab_wrap" onclick="ShowFindUser();return false;">
 			<div class="chat_onl_cont">
-				<div class="chat_onl" id="chat_onl">{online}</div>
+				<div class="chat_onl" id="chat_onl">[online_on]{online}[/online_on]</div>
 			</div>
 		</a>
 	</div>
@@ -28,7 +28,7 @@
 <div id="fc_clist" class="fc_tab_wraps noneshow">
 	<div class="fc_tab_head">
 		<a class="fc_tab_close_wrap" onclick="ShowFindUser();return false;"><div class="chats_sp fc_tab_close"></div></a>
-		<div class="fc_tab_title noselect"><span>{online}</span> пользователей онлайн</div>
+		<div class="fc_tab_title noselect">[online_on]<span>{online}</span> пользователей онлайн[/online_on][online_off]Список переписок[/online_off]</div>
 	</div>
 	<div id="fc_ctabs_cont">
 		<div class="fc_ctab fc_ctab_active">

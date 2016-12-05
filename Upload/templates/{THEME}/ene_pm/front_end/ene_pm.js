@@ -82,7 +82,6 @@ function ShowChatUser(id)
 							{
 								if(scrollPositionY == 0 && isAtTop && bindlock)
 								{
-									console.log("Y : " + scrollPositionY + " TOP : " + isAtTop)
 									update_msg(lcpm, true);
 									dialogblockarr[id].scrollByY(15, false);
 								}
@@ -143,9 +142,9 @@ function update_msg(id, updback)
 				else
 					var $nowpm = 15;
 				if(updback || $nowpm > 15)
-					var getback = "kkk";
+					var getback = 2;
 				else
-					var getback = "fff";
+					var getback = 1;
 				$.ajax({
 					type: 'POST',
 					url: "/engine/modules/ene_pm/ajax/upd_mess.php",
@@ -343,7 +342,8 @@ $(function()
 					$this.html('');
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
-				  console.log("xml : " + XMLHttpRequest + " | status : " + textStatus + " | error : " + errorThrown);
+					console.log("xml : " + XMLHttpRequest + " | status : " + textStatus + " | error : " + errorThrown);
+					$this.html('');
 				}
 			});
 		}
